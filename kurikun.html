@@ -56,9 +56,36 @@
     <title>Twitter Timeline</title>
 </head>
 <body>
-    <div class="timeline">
-        <a class="twitter-timeline" data-height="500" href="貼りたいアカウントのURL">Tweets by アカウント名</a>
+    <h1>Twitter Timeline Viewer</h1>
+    <input type="text" id="twitterUrl" placeholder="貼りたいアカウントのURLを入力してください" style="width: 300px;">
+    <button onclick="updateTimeline()">タイムラインを表示</button>
+
+    <div class="timeline" id="timelineContainer">
+        <!-- タイムラインがここに挿入されます -->
     </div>
+
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+        function updateTimeline() {
+            const url = document.getElementById("twitterUrl").value;
+            const timelineContainer = document.getElementById("timelineContainer");
+
+            // タイムラインをリセット
+            timelineContainer.innerHTML = '';
+
+            // 新しいタイムライン要素を作成
+            const a = document.createElement("a");
+            a.setAttribute("class", "twitter-timeline");
+            a.setAttribute("data-height", "500");
+            a.setAttribute("href", url);
+            a.innerText = "Tweets by " + url;
+
+            // タイムラインコンテナに追加
+            timelineContainer.appendChild(a);
+
+            // Twitterのスクリプトを再読み込みしてタイムラインを表示
+            twttr.widgets.load();
+        }
+    </script>
 </body>
 </html>

@@ -1,55 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <h1>まだいろいろ作り途中です！！！ワンちゃんインスタ追加できるかも！！！</h1>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>埋め込み動画の変更</title>
-</head>
-<body>
-    <h2>YouTube動画の埋め込み</h2>
-    
-    <!-- 動画IDの入力欄 -->
-    <label for="videoID">YouTubeの動画IDを入力してください:</label>
-    <input type="text" id="videoID" placeholder="例: dQw4w9WgXcQ">
-    <button onclick="changeVideo()">動画を表示</button>
-
-    <!-- 動画の埋め込み部分 -->
-    <div id="videoContainer">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-    </div>
-
-    <script>
-        function changeVideo() {
-            // ユーザーが入力した動画IDを取得
-            const videoID = document.getElementById("videoID").value;
-            
-            // 動画IDが空でない場合のみURLを変更
-            if (videoID) {
-                // 新しい埋め込みURLを設定
-                const newUrl = `https://www.youtube.com/embed/${videoID}`;
-                
-                // iframe要素を更新
-                document.getElementById("videoContainer").innerHTML = `
-                    <iframe width="560" height="315" src="${newUrl}" 
-                            title="YouTube video player" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                    </iframe>
-                `;
-            } else {
-                alert("動画IDを入力してください。");
-            }
-        }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

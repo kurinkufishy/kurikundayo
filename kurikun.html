@@ -53,6 +53,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Jukebox</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 外部CSSをリンク -->
+</head>
+<body>
+
+<header>
+    <h1>YouTube Jukebox</h1>
+</header>
+
+<div id="container">
+    <div id="searchBox">
+        <input type="text" id="searchQuery" placeholder="動画を検索" />
+        <button onclick="searchYouTube()">検索</button>
+    </div>
+
+    <div id="results"></div>
+
+    <div id="videoPlayer">
+        <iframe id="player" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script src="scripts.js"></script> <!-- 外部JavaScriptをリンク -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter Timeline</title>
 </head>
 <body>

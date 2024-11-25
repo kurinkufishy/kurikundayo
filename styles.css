@@ -4,6 +4,12 @@ body {
     margin: 0;
     padding: 0;
 }
+twitter.header {
+  background-color: #c2edff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
 
 header {
     background-color: #ff0000;

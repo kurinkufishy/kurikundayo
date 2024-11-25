@@ -4,8 +4,9 @@ body {
     margin: 0;
     padding: 0;
 }
-twitter.header {
-  background-color: #c2edff;
+
+.twitter-header {
+  background-color: #bce2e8;
   color: white;
   text-align: center;
   padding: 20px;

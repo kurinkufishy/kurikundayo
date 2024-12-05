@@ -71,3 +71,23 @@
     </script>
 </body>
 </html>
+<div id="twitter-embed"></div>
+
+<script type="text/javascript">
+    // URLを指定
+    const tweetUrl = 'https://twitter.com/TwitterJP/status/1234567890123456789';
+
+    // Twitter埋め込み用のスクリプトをロード
+    window.onload = function() {
+        const embedDiv = document.getElementById('twitter-embed');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://platform.twitter.com/widgets/tweet_button.html?url=' + encodeURIComponent(tweetUrl);
+        iframe.width = '500';
+        iframe.height = '500';
+        iframe.frameBorder = '0';
+        embedDiv.appendChild(iframe);
+    };
+</script>
+
+</body>
+</html>

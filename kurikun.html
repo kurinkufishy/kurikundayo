@@ -44,49 +44,45 @@
     <div class="timeline" id="timelineContainer">
         <!-- タイムラインがここに挿入されます -->
     </div>
+    <!-- ツイートURL入力フォーム -->
+    <form id="tweet-form">
+        <label for="tweet-url">ツイートURLを入力:</label>
+        <input type="url" id="tweet-url" placeholder="https://twitter.com/ユーザー名/status/ツイートID" required>
+        <button type="submit">表示</button>
+    </form>
+</div>
 
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <script>
-        function updateTimeline() {
-            const url = document.getElementById("twitterUrl").value;
-            const timelineContainer = document.getElementById("timelineContainer");
-
-            // タイムラインをリセット
-            timelineContainer.innerHTML = '';
-
-            // 新しいタイムライン要素を作成
-            const a = document.createElement("a");
-            a.setAttribute("class", "twitter-timeline");
-            a.setAttribute("data-height", "500");
-            a.setAttribute("data-width","500");
-            a.setAttribute("href", url);
-            a.innerText = "Tweets by " + url;
-
-            // タイムラインコンテナに追加
-            timelineContainer.appendChild(a);
-
-            // Twitterのスクリプトを再読み込みしてタイムラインを表示
-            twttr.widgets.load();
-        }
-    </script>
-</body>
-</html>
+<!-- 埋め込み式Twitterツイート -->
 <div id="twitter-embed"></div>
 
 <script type="text/javascript">
-    // URLを指定
-    const tweetUrl = 'https://twitter.com/TwitterJP/status/1234567890123456789';
+    // フォームの送信イベントを監視
+    document.getElementById('tweet-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // ページリロードを防止
 
-    // Twitter埋め込み用のスクリプトをロード
-    window.onload = function() {
+        // 入力されたURLを取得
+        const tweetUrl = document.getElementById('tweet-url').value;
+
+        // 埋め込みエリアをクリア
         const embedDiv = document.getElementById('twitter-embed');
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://platform.twitter.com/widgets/tweet_button.html?url=' + encodeURIComponent(tweetUrl);
-        iframe.width = '500';
-        iframe.height = '500';
-        iframe.frameBorder = '0';
-        embedDiv.appendChild(iframe);
-    };
+        embedDiv.innerHTML = '';
+
+        // 新しいTwitterウィジェットを作成
+        const blockquote = document.createElement('blockquote');
+        blockquote.className = 'twitter-tweet';
+        blockquote.innerHTML = `<a href="${tweetUrl}"></a>`;
+        embedDiv.appendChild(blockquote);
+
+        // Twitterウィジェットスクリプトを再読み込み
+        if (typeof twttr !== 'undefined') {
+            twttr.widgets.load();
+        } else {
+            const script = document.createElement('script');
+            script.src = 'https://platform.twitter.com/widgets.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    });
 </script>
 
 </body>

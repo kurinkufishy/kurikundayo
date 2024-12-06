@@ -38,18 +38,72 @@
 <header class="twitter-header">
     <h1>Twitter閲覧ボックス</h1>
 </header>
-    <input type="text" id="twitterUrl" placeholder="貼りたいアカウントのURLを入力してください" style="width: 300px;">
-    <button onclick="updateTimeline()">タイムラインを表示</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitterアカウント表示</title>
+    <style>
+        form {
+            margin-bottom: 20px;
+        }
+        #twitter-embed {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
 
-    <div class="timeline" id="timelineContainer">
-        <!-- タイムラインがここに挿入されます -->
-    </div>
-    <!-- ツイートURL入力フォーム -->
-    <form id="tweet-form">
-        <label for="tweet-url">ツイートURLを入力:</label>
-        <input type="url" id="tweet-url" placeholder="https://twitter.com/ユーザー名/status/ツイートID" required>
-        <button type="submit">表示</button>
-    </form>
-</div>
+<h1>Twitterアカウント表示</h1>
+<p>見たいTwitterアカウントのユーザー名（@を除く）を入力してください。</p>
+
+<!-- アカウント名入力フォーム -->
+<form id="account-form">
+    <label for="twitter-account">Twitterユーザー名:</label>
+    <input type="text" id="twitter-account" placeholder="例: TwitterJP" required>
+    <button type="submit">表示</button>
+</form>
+
+<!-- Twitter埋め込みエリア -->
+<div id="twitter-embed"></div>
+
+<!-- Twitterウィジェット用スクリプト -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+    // フォームの送信イベントを監視
+    document.getElementById('account-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // ページリロードを防止
+
+        // 入力されたユーザー名を取得
+        const username = document.getElementById('twitter-account').value.trim();
+
+        // ユーザー名が空でないか確認
+        if (username === '') {
+            alert('ユーザー名を入力してください。');
+            return;
+        }
+
+        // 埋め込みエリアをクリア
+        const embedDiv = document.getElementById('twitter-embed');
+        embedDiv.innerHTML = '';
+
+        // 新しいTwitterウィジェットを作成
+        const timeline = document.createElement('a');
+        timeline.className = 'twitter-timeline';
+        timeline.href = `https://twitter.com/${username}`;
+        timeline.setAttribute('data-width', '500');
+        timeline.setAttribute('data-height', '600');
+        timeline.innerText = `Tweets by @${username}`;
+
+        embedDiv.appendChild(timeline);
+
+        // Twitterウィジェットスクリプトを再読み込み
+        if (typeof twttr !== 'undefined') {
+            twttr.widgets.load();
+        }
+    });
+</script>
+
 </body>
 </html>

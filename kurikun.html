@@ -103,6 +103,85 @@
         }
     });
 </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ツイートを右寄せで表示</title>
+    <style>
+        form {
+            margin-bottom: 20px;
+        }
+
+        #twitter-embed {
+            margin-top: 20px;
+            float: right; /* 埋め込みを右寄せ */
+            width: 500px; /* 幅を指定 */
+        }
+
+        /* ページのコンテンツが埋め込みと重ならないよう調整 */
+        .content {
+            margin-right: 520px; /* 埋め込みの幅分右側に余白を確保 */
+        }
+    </style>
+</head>
+<body>
+
+<h1>ツイートを右寄せで表示</h1>
+<div class="content">
+    <p>見たいツイートのURLを入力してください。右側に埋め込まれます。</p>
+</div>
+
+<!-- ツイートURL入力フォーム -->
+<form id="tweet-form">
+    <label for="tweet-url">ツイートURL:</label>
+    <input type="url" id="tweet-url" placeholder="https://twitter.com/ユーザー名/status/ツイートID" required>
+    <button type="submit">表示</button>
+</form>
+
+<!-- ツイート埋め込みエリア -->
+<div id="twitter-embed"></div>
+
+<!-- Twitterウィジェット用スクリプト -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+    // フォームの送信イベントを監視
+    document.getElementById('tweet-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // ページリロードを防止
+
+        // 入力されたツイートURLを取得
+        const tweetUrl = document.getElementById('tweet-url').value.trim();
+
+        // URLが空でないか確認
+        if (tweetUrl === '') {
+            alert('ツイートURLを入力してください。');
+            return;
+        }
+
+        // 埋め込みエリアをクリア
+        const embedDiv = document.getElementById('twitter-embed');
+        embedDiv.innerHTML = '';
+
+        // 新しいツイート埋め込みを作成
+        const blockquote = document.createElement('blockquote');
+        blockquote.className = 'twitter-tweet';
+        blockquote.innerHTML = `<a href="${tweetUrl}"></a>`;
+        embedDiv.appendChild(blockquote);
+
+        // Twitterウィジェットスクリプトを再読み込み
+        if (typeof twttr !== 'undefined') {
+            twttr.widgets.load();
+        } else {
+            const script = document.createElement('script');
+            script.src = 'https://platform.twitter.com/widgets.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    });
+</script>
 
 </body>
 </html>

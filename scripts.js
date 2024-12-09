@@ -8,7 +8,7 @@ function searchYouTube() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            displayResults(data.items.slice(0, 4)); // 最初の4件に限定
+            displayResults(data.items.slice(0, 12)); // 最初の4件に限定
         })
         .catch(error => {
             console.error('Error fetching data:', error);

@@ -12,18 +12,17 @@
     <h1>YouTube</h1>
 </header>
 
-<div id="container">
-    <div id="searchBox">
-        <input type="text" id="searchQuery" placeholder="動画を検索" />
-        <button onclick="searchYouTube()">検索</button>
-    </div>
+<input type="text" id="searchQuery" placeholder="動画を検索">
+<button onclick="searchYouTube()">検索</button>
 
-    <div id="results"></div>
+<div id="results"></div>
 
-    <div id="videoPlayer">
-        <iframe id="player" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+<div id="controls" style="display: none;">
+    <button onclick="loadMore()">さらに表示</button>
 </div>
+
+<iframe id="player" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+
 
 <script src="scripts.js"></script> <!-- 外部JavaScriptをリンク -->
 </body>

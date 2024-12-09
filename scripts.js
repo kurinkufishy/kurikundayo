@@ -10,7 +10,7 @@ function searchYouTube() {
 }
 
 function fetchYouTubeData() {
-    const maxResults = 10; // 一度に取得する最大件数
+    const maxResults = 50; // 一度に取得する最大件数
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=${maxResults}&pageToken=${nextPageToken || ''}&key=${apiKey}`;
 
     fetch(url)

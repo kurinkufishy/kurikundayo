@@ -27,9 +27,8 @@ function fetchYouTubeData() {
 function displayResults(videos) {
     const resultsDiv = document.getElementById('results');
 
-    if (!nextPageToken) {
-        resultsDiv.innerHTML = ''; // 新しい検索時に以前の結果をクリア
-    }
+    // 新しい検索時に以前の結果をクリア
+    resultsDiv.innerHTML = '';
 
     videos.forEach(video => {
         const videoId = video.id.videoId;
